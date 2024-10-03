@@ -6,13 +6,8 @@ urlpatterns = [
     path('Books/', views.search_books, name='search_books'),
     path('Books/', views.books_list, name='books_list'),
     path('Books/details/<slug:slug>/', views.details, name='details_page'),
-<<<<<<< HEAD
-    path('Books/list/all',views.bookList,name='book_list'),
-    path('Books/create/',views.book_create,name='book_create')
-=======
     path('Books/list/',views.bookList,name='book_list'),
     path('Books/list/create/',views.book_create,name='book_create'),
     path('Books/list/update/<int:pk>/',views.book_update,name='book_update'),
     path('Books/list/delete/<int:pk>/',views.book_delete,name='book_delete'),
->>>>>>> 2bb43dc (author genres books ready)
 ]

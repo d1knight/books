@@ -1,2 +1,16 @@
+# Игнорировать виртуальные окружения
 .venv/
+
+# Игнорировать настройки IDE
 .idea/
+
+# Игнорировать кэши Python
+Library/authors/__pycache__/
+Library/bookings/__pycache__/
+Library/Books/__pycache__/
+Library/genres/__pycache__/
+Library/main/__pycache__/
+Library/media/__pycache__/
+Library/personal/__pycache__/
+Library/readers/__pycache__/
+Library/templates/__pycache__/
