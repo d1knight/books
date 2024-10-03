@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block header %}
+<div class="box-author">
+    <h1>Редактировать автора</h1>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label for="name">Название:</label>
+    <input type="text" name="name" id="name" value="{{authors.name}}">
+    <label for="description">Описание:</label>
+    <input type="text" name="description" id="description" value="{{authors.description}}">
+    <label for="slug">Слаг:</label>
+    <input type="text" name="slug" id="slug" value="{{authors.slug}}">
+    <label for="banner">Фото:</label>
+    <input type="file" name="banner" id="banner">
+    <button type="submit">Сохранить</button>
+</form>
+</div>
+
+
+{% endblock %}

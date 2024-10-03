@@ -1,0 +1,342 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+    list-style: none;
+    font-family: tahoma;
+    font-size: 16px;
+}
+
+body {
+    background: url(../img/librar.jpg);
+    background-size: 100%;
+}
+
+.detail_block p {
+    margin-top: 15px;
+}
+
+.about-genre p {
+    color: whitesmoke;
+    text-shadow: 0 0 2px #ff0000;
+}
+
+
+.img-person img {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    width: 150px;
+}
+
+.img-author .author-image {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    width: 250px;
+}
+
+.main_block {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    text-align: center;
+}
+
+.main_block ul {
+    display: flex;
+    text-decoration: none;
+    font-size: 15px;
+    color: whitesmoke;
+    text-shadow: #FC0 1px 0 10px;
+
+}
+
+.main_block ul li a {
+    font-size: 20px;
+}
+
+
+body form {
+    margin-top: 2%;
+}
+
+
+
+body h1 {
+    font-size: 40px;
+    color: #fff;
+    text-shadow: 1px 1px 2px pink;
+    margin-bottom: 20px;
+}
+
+.main_block ul li {
+    margin: 20px;
+
+}
+
+.main_block ul a {
+    text-decoration: none;
+    font-size: 15px;
+    color: whitesmoke;
+    text-shadow: #FC0 1px 0 10px;
+}
+
+/* form{
+    padding: 12px;
+    display: flex;
+    justify-content: center;
+} */
+
+.centers {
+    text-align: center;
+}
+
+.centers h1 {
+    margin-top: 20px;
+    font-size: 50px;
+}
+
+.author-content {
+    margin: 4%;
+    border: 1px solid black;
+    display: flex;
+}
+
+.text-h1 {
+    margin: 4%;
+}
+
+.about-author {
+    margin: 4%;
+}
+
+.about-genre {
+    margin: 4%;
+    display: block;
+}
+
+.test-forms table th,
+table td {
+    padding: 15px;
+    /* Отступы в ячейках */
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    border-radius: 8px;
+}
+
+.test-forms table td:last-child {
+    border-right: none;
+}
+
+.test-forms table th:last-child {
+    border-right: none;
+}
+
+.test-forms table tr:last-child td {
+    border-bottom: none;
+}
+
+.test-forms table td:first-child {
+    font-weight: bold;
+    font-style: oblique;
+}
+
+.test-forms table tr,
+td,
+th {
+    border-radius: 6px;
+}
+
+.test-forms table {
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 8px;
+    /* Скругление углов */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Тень для эффекта поднятости */
+    text-align: center;
+    border-collapse: collapse;
+}
+
+.pagination {
+    display: inline-block;
+    background-color: rgba(255, 255, 255, 0.6);
+    /* Белый фон с 50% непрозрачностью */
+    border-radius: 3px;
+    /* Скругление углов */
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 10px;
+    padding: 10px;
+}
+
+.pagination .current {
+    font-weight: bold;
+}
+
+.pagination a {
+    color: black;
+}
+
+.form {
+    width: 50%;
+    margin-left: 25%;
+    margin-right: 25%;
+    background-color: rgba(255, 255, 255, 0.6);
+    /* Белый фон с 50% непрозрачностью */
+    border-radius: 3px;
+    /* Скругление углов */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+    padding: 12px;
+    display: flex;
+    justify-content: center;
+}
+
+.message {
+
+    display: inline-block;
+    padding: 1%;
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 3px;
+    margin-bottom: 5px;
+}
+
+.main-content {
+    margin-left: 5%;
+    margin-right: 5%;
+    padding: 1%;
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 3px;
+    margin-bottom: 5px;
+}
+
+.centers {
+    background-color: rgba(255, 255, 255, 0.6);
+    margin-left: 5%;
+    margin-right: 5%;
+    border-radius: 3px;
+    padding: 15px;
+}
+
+.centers h2 {
+    margin-bottom: 30px;
+}
+
+table button {
+    transition: background-color 0.3s;
+    border-radius: 3px;
+    padding: 5px 5px;
+}
+
+table button a {
+    text-decoration: none;
+    color: whitesmoke;
+}
+
+table a {
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+}
+
+table .edit-btn {
+    background-color: #0f62de;
+}
+
+table .remove-btn {
+    background-color: #fd1901;
+}
+
+
+.search-input {
+    width: 50%;
+    border: 0;
+    outline: 0;
+    padding: 5px 0;
+    background: transparent;
+    transition: border-color 0.2s;
+    margin-right: 15px;
+    text-align: center;
+
+}
+
+.search-btn {
+    border: 1px solid black;
+    border-radius: 3px;
+    padding: 5px 15px;
+    background: transparent;
+    cursor: pointer;
+}
+
+.success img {
+    width: 200px;
+    border-radius: 5px;
+}
+
+.content-box {
+    margin: 0 5%;
+    display: flex;
+    justify-content: space-between;
+
+    border-radius: 6px;
+}
+
+.search-sidebar {
+    border-radius: 6px;
+    background-color: rgba(255, 255, 255, 0.5);
+    width: 32%;
+    padding: 2%;
+}
+
+.sidebar form label {
+    display: block;
+    margin-bottom: 20px;
+}
+
+.info-side {
+    background-color: rgba(255, 255, 255, 0.5);
+    width: 65%;
+    border-radius: 6px;
+    padding: 1%;
+}
+
+.label-selected {
+    width: 65%;
+}
+
+.label-selected select {
+    height: 35px;
+}
+
+.sidebar form label {
+    margin: 1px;
+}
+
+.books_list {
+    display: flex;
+    justify-content: center;
+}
+
+.pagination_list {
+    display: flex;
+    justify-content: center;
+}
+
+.table-primary {
+    border-radius: 6px;
+}
+
+.content .box-author {
+    margin: 0 4%;
+    text-align: center;
+}
+
+.content .box-author table {
+    text-align: center;
+}
+
+.content .box-author .btn a{
+    text-decoration: none;
+    color: #ddd;
+}

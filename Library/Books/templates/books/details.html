@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block header %}
+<div class="main-content">
+    <div class="detail_block">
+    <h1>{{books.name}}</h1>
+    <p>Место проживания: {{books.description}}</p>
+    <p>Автор: {{books.authors}}</p>
+    <p>Количество: {{books.count}}</p>
+    <p>Жанр: {{books.genres}}</p>
+    <a href="/Books">Назад</a>
+</div>
+</div>
+
+
+{% endblock %}

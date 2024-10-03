@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<div class="test-forms">
+
+    <form class="form" action="{% url 'search_genres' %}">
+        <input class="search-input" type="text" name="query" placeholder="Введите имя жанра..." value="{{ query }}">
+        <button class="search-btn" type="submit">Поиск</button>
+    </form>
+
+    {% if query %}
+    <table class="result-table">
+        <thead>
+        <tr>
+            <th>Жанр</th>
+            <th>Описание</th>
+            <th>Изменение</th>
+            <th>Удаление</th>
+        </tr>
+        </thead>
+        {% for genre in page_obj %}
+
+
+        <tr class='success'>
+            <td><a href="about/{{ genre.slug }}">{{ genre.name }}</a></td>
+            <td>{{ genre.description }}</td>
+            <td>
+                <button class="edit-btn"><a href="#">Изменить</a>
+            </td>
+            </button>
+            <td>
+                <button class="remove-btn"><a href="#">Удалить</a></button>
+            </td>
+        </tr>
+        {% empty %}
+        <div class="message"><h3>Жанр не найден</h3></div>
+
+        {% endfor %}
+    </table>
+
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page=1{% if query %}&query={{ query }}{% endif %}">Первая</a>
+                <a href="?page={{ page_obj.previous_page_number }}{% if query %}&query={{ query }}{%endif%}">Предыдущая</a>
+            {% endif %}
+        </span>
+        <span class="current">
+            Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages}}
+        </span>
+
+        {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}{% if query %}&query={{ query }}{% endif%}">Следующая</a>
+        <a href="?page={{ page_obj.paginator.num_pages }}{% if query %}&query={{ query }}{% endif%}">Последняя</a>
+        {% endif %}
+    </div>
+</div>
+
+{% endif %}
+
+{% endblock %}

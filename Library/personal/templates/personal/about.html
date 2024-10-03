@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block header %}
+
+<div class="main-content">
+    <div class="about-genre">
+
+    <h1>{{ personal.name }}</h1>
+    <div class="img-person"><img class="personal-image" src="{{ personal.photo.url }}"></div>
+    <p>Позиция: {{ personal.position }}</p>
+    <p>Адрес: {{ personal.adress }}</p>
+    <a href="/personal">Назад</a>
+
+</div>
+</div>
+
+{% endblock %}

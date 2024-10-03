@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block header %}
+
+
+<div class="main-content">
+    <div class="about-genre">
+
+    <h1>Жанр: {{ genres.name }}</h1>
+
+    <p>{{ genres.description }}</p>
+    <a href="/genres">Назад</a>
+
+</div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block header %}
+
+<div class="main-content">
+    <div class="detail_block">
+    <h1>{{readers.name}}</h1>
+    <p>Место проживания: {{readers.adress}}</p>
+    <p>Номер телефона: {{readers.telephone}}</p>
+    <div class="img-person">
+        <img class="personal-image" src="{{ readers.image.url }}">
+    </div>
+    <a href="/readers">Назад</a>
+</div>
+
+</div>
+
+{% endblock %}

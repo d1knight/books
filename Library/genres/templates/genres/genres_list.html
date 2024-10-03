@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block header %}
+<div class="box-author">
+    <h1>Список жанров</h1>
+    <table class="table table-dark table-striped">
+        <tr>
+            <th>Жанр</th>
+            <th>Описание</th>
+            <th>Редактирование</th>
+            <th>Удаление</th>
+        </tr>
+        {% for genre in genres %}
+        <tr>
+            <td>{{ genre.name }}</td>
+            <td>{{ genre.description }}</td>
+            <td> <button type="button" class="btn btn-primary"><a href="{% url 'genre_update' genre.pk %}">Редактировать</a></button></td>
+            <td><button type="button" class="btn btn-danger"><a href="{% url 'genre_delete' genre.pk %}">Удалить</a></button></td>
+        </tr>
+        {% endfor %}
+    </table>
+    <button type="button" class="btn btn-success"><a href="{% url 'genre_create' %}">Добавить жанр</a></button>
+</div>
+
+{% endblock %}

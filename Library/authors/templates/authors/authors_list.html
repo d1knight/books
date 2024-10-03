@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block header %}
+<div class="box-author">
+    <h1>Список авторов</h1>
+    <table class="table table-dark table-striped">
+        <tr>
+            <th>Имя автора</th>
+            <th>Описание</th>
+            <th>Фото</th>
+            <th>Редактирование</th>
+            <th>Удаление</th>
+        </tr>
+        {% for author in authors %}
+        <tr>
+            <td>{{ author.name }}</td>
+            <td>{{ author.description }}</td>
+            <td>
+                {% if author.banner %}
+                    <img src="{{ author.banner.url }}" alt="author-portret" width="160px">
+                {% else %}
+                    <img src="/path/to/default/image.jpg" alt="default-author-portret" width="160px">
+                {% endif %}
+            </td>
+            <td><button type="button" class="btn btn-primary"><a href="{% url 'author_update' author.pk %}">Редактировать</a></button></td>
+            <td><button type="button" class="btn btn-danger"><a href="{% url 'author_delete' author.pk %}">Удалить</a></button></td>
+        </tr>
+        {% endfor %}
+    </table>
+    <button type="button" class="btn btn-success"><a href="{% url 'author_create' %}">Добавить автора</a></button>
+</div>
+{% endblock %}

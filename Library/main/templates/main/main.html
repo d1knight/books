@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+{% block header %}
+
+<div class="content-box">
+    <div class="search-sidebar">
+        <div class="sidebar">
+            <form method="get">
+                <h3>Поиск по жанрам</h3>
+                <div class="label-selected">
+                    <label for="genres" >
+                        <select class="form-control" name="genres"> <!-- Множественный выбор для жанров -->
+                            <option value="" disabled selected>Выберите жанр</option>
+                            <option value="">Сбросить выбор</option>
+                            <option value="Роман" {% if 'Роман' in genres %}selected{% endif %}>Роман</option>
+                            <option value="Поэма" {% if 'Поэма' in genres %}selected{% endif %}>Поэма</option>
+                            <option value="Сказка" {% if 'Сказка' in genres %}selected{% endif %}>Сказка</option>
+                            <option value="Мистика" {% if 'Мистика' in genres %}selected{% endif %}>Мистика</option>
+                            <option value="Фантастика" {% if 'Фантастика' in genres %}selected{% endif %}>Фантастика</option>
+                            <option value="Повести" {% if 'Повести' in genres %}selected{% endif %}>Повести</option>
+                        </select>
+                    </label>
+                </div>
+                
+                <h3>Поиск по авторам</h3>
+                <div class="label-selected">
+                    <label>
+                        <select class="form-control" name="authors"> <!-- Множественный выбор для авторов -->
+                            <option value="" disabled selected>Выберите авторов</option>
+                            <option value="">Сбросить выбор</option>
+                            {% for author in authors %}
+                                <option value="{{ author.name }}" {% if author.name in selected_authors %}selected{% endif %}>{{ author.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </label>
+                </div>
+                
+                <h3>Поиск по цене</h3>
+                <div class="form-group">
+                    <label>Минимальная цена:</label>
+                    <input type="number" name="min_price" class="form-control" value="{{ min_price }}" />
+                    <label>Максимальная цена:</label>
+                    <input type="number" name="max_price" class="form-control" value="{{ max_price }}" />
+                </div>
+               
+               
+                <h3>Поиск по переплету</h3>
+                <div>
+                    {% for binding in unique_bindings %}
+                    <div class="form-check">
+                        <input type="checkbox" name="bindings" value="{{ binding }}" class="form-check-input" {% if binding in selected_bindings %}checked{% endif %}>
+                        <label class="form-check-label">{{ binding }}</label>
+                    </div>
+                    {% endfor %}
+                </div>
+                <button type="submit" class="btn btn-primary mt-2">Применить</button>
+                <a href="{% url 'main_page' %}" class="btn btn-secondary mt-2">Сбросить фильтры</a>
+            </form>
+        </div>
+    </div>
+
+    <div class="info-side">
+        
+        <div class="info-content">
+            {% if genres or selected_authors or min_price or max_price or binding %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Жанр</th>
+                        <th>Имя книги</th>
+                        <th>Автор</th>
+                        <th>Цена</th>
+                        <th>Переплет</th>
+                        <th>Изменение:</th>
+                        <th>Удаление:</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for book in page_obj %}
+                    <tr>
+                        <td>{{ book.genres }}</td>
+                        <td>{{ book.name }}</td>
+                        <td>{{ book.authors }}</td>
+                        <td>{{ book.price }}</td>
+                        <td>{{ book.binding }}</td> 
+                        <td><a class="btn btn-warning" href="#">Изменить</a></td>
+                        <td><a class="btn btn-danger" href="#" onclick="return confirm('Вы уверены, что хотите удалить эту книгу?');">Удалить</a></td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="5">Нет доступных книг.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        
+            <!-- Пагинация -->
+            <div class="pagination">
+                {% if page_obj %}
+                    <span>Страницы: </span>
+                    {% if page_obj.has_previous %}
+                        <a class="btn btn-link" href="?page=1{% if genres %}&genres={{ genres|join:',' }}{% endif %}{% if selected_authors %}&authors={{ selected_authors|join:',' }}{% endif %}{% if min_price %}&min_price={{ min_price }}{% endif %}{% if max_price %}&max_price={{ max_price }}{% endif %}{% if binding %}&bindings={{ binding|join:',' }}{% endif %}">« Первый</a>
+                        <a class="btn btn-link" href="?page={{ page_obj.previous_page_number }}{% if genres %}&genres={{ genres|join:',' }}{% endif %}{% if selected_authors %}&authors={{ selected_authors|join:',' }}{% endif %}{% if min_price %}&min_price={{ min_price }}{% endif %}{% if max_price %}&max_price={{ max_price }}{% endif %}{% if binding %}&bindings={{ binding|join:',' }}{% endif %}">‹ Назад</a>
+                    {% endif %}
+
+                    <span>Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}</span>
+
+                    {% if page_obj.has_next %}
+                        <a class="btn btn-link" href="?page={{ page_obj.next_page_number }}{% if genres %}&genres={{ genres|join:',' }}{% endif %}{% if selected_authors %}&authors={{ selected_authors|join:',' }}{% endif %}{% if min_price %}&min_price={{ min_price }}{% endif %}{% if max_price %}&max_price={{ max_price }}{% endif %}{% if binding %}&bindings={{ binding|join:',' }}{% endif %}">Вперед ›</a>
+                        <a class="btn btn-link" href="?page={{ page_obj.paginator.num_pages }}{% if genres %}&genres={{ genres|join:',' }}{% endif %}{% if selected_authors %}&authors={{ selected_authors|join:',' }}{% endif %}{% if min_price %}&min_price={{ min_price }}{% endif %}{% if max_price %}&max_price={{ max_price }}{% endif %}{% if binding %}&bindings={{ binding|join:',' }}{% endif %}">Последняя »</a>
+                    {% endif %}
+                {% endif %}
+            </div>
+        {% else %}
+            <h4>Пожалуйста, выберите из фильтров, чтобы отобразить книги.</h4>
+        {% endif %}
+        
+            
+        </div>
+       
+    </div>
+</div>
+{% endblock %}

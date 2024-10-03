@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% block header %}
+<div class="box-author">
+<<<<<<< HEAD
+    <h1>Создать</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="title">Название книги:</label>
+        <input type="text" name="name" id="name"><br>
+        
+        <label for="count">Количество:</label>
+        <input type="number" name="count" id="count"><br>
+
+        <label for="authors">Выберите автора:</label>
+        <select name="authors" id="authors" multiple>
+            {% for author in authors %}
+            <option value="{{ author.id }}">{{ author.name }}</option>
+            {% endfor %}
+        </select><br>
+
+        <label for="genres">Выберите жанр:</label>
+        <select name="genres" id="genres" multiple>
+            {% for genre in genres %}
+            <option value="{{ genre.id }}">{{ genre.name }}</option>
+            {% endfor %}
+        </select><br>
+
+        <label for="slug">Напишите слаг:</label>
+        <input type="text" name="slug" id="slug"><br>
+
+        <label for="description">Описание:</label>
+        <textarea name="description" id="description"></textarea><br>
+
+        <label for="publishingYear">Год издания</label>
+        <input type="number" name="publishingYear" id="publishingYear"><br>
+        
+        <label for="price">Цена:</label>
+        <input type="number" name="price" id="price"><br>
+
+        <label for="publication">Издательство:</label>
+        <input type="text" name="publication" id="publication"><br>
+
+        <label for="binding">Переплет:</label>
+        <input type="text" name="binding" id="binding"> <br>
+
+        <button type="submit">Создать</button>
+        
+    </form>
+
+    <a href="{% url 'book_list' %}">Назад</a>
+=======
+    <h1>Список книг</h1>
+    <table class="table table-dark table-striped">
+        <tr>
+            <th>Название книги</th>
+            <th>Описание</th>
+            <th>Автор</th>
+            <th>Редактирование</th>
+            <th>Удаление</th>
+        </tr>
+        {% for book in page_obj %}
+        <tr>
+            <td>{{ book.name }}</td>
+            <td>{{ book.description }}</td>
+            <td>{% for author in book.authors.all %}
+                {{ author.name }}{% if not forloop.last %}, {% endif %}
+            {% endfor %}</td>
+            <td><button type="button" class="btn btn-primary"><a href="{% url 'book_update' book.pk %}">Редактировать</a></button></td>
+            <td><button type="button" class="btn btn-danger"><a href="{% url 'book_delete' book.pk %}">Удалить</a></button></td>
+        </tr>
+        {% endfor %}
+    </table>
+    <button type="button" class="btn btn-success"><a href="{% url 'book_create' %}">Добавить автора</a></button>
+>>>>>>> 2bb43dc (author genres books ready)
+</div>
+{% endblock %}

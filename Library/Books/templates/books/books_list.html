@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block header %}
+
+<div class="books_list">
+    <table class="table table-primary w-auto">
+        <tr>
+            <th>Навание книги</th>
+            <th>Жанр</th>
+            <th>Год издания</th>
+        </tr>
+
+
+        {% for getBook in page_obj %}
+        <tr>
+            <td>{{ getBook.name }}</td>
+            <td>{{ getBook.genres }}</td>
+            <td>{{ getBook.publishingYear }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+
+</div>
+
+<div class="pagination_list">
+    <nav class="nav nav-primary w-auto">
+        {% if page_obj.has_previous %}
+        <a class="nav-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+        {% else %}
+        <a class="nav-link disabled" href="#">Previous</a>
+        {% endif %}
+    
+        {% for num in page_obj.paginator.page_range %}
+        <a class="nav-link {% if page_obj.number == num %}active{% endif %}" href="?page={{ num }}">{{ num }}</a>
+        {% endfor %}
+    
+        {% if page_obj.has_next %}
+        <a class="nav-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+        {% else %}
+        <a class="nav-link disabled" href="#">Next</a>
+        {% endif %}
+    </nav>
+</div>
+
+{% endblock %}

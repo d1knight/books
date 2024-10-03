@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block header %}
+<div class="box-author">
+    <h1>Редактировать жанр</h1>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label for="name">Название:</label>
+    <input type="text" name="name" id="name" value="{{genres.name}}">
+    <label for="description">Описание:</label>
+    <input type="text" name="description" id="description" value="{{genres.description}}">
+    <label for="slug">Слаг:</label>
+    <input type="text" name="slug" id="slug" value="{{genres.slug}}">
+    <button type="submit">Сохранить</button>
+</form>
+</div>
+
+
+{% endblock %}

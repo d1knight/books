@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block header %}
+<form method="post">
+    {% csrf_token %}
+    <label for="name">Название:</label>
+    <input type="text" name="name" id="name" value="{{ books.name }}">
+    
+    <label for="count">Количество:</label>
+    <input type="number" name="count" id="count" value="{{ books.count }}">
+    
+    <label for="authors">Авторы:</label>
+    <select name="authors" id="authors" multiple>
+        {% for author in authors %}
+            <option value="{{ author.id }}" {% if author in books.authors.all %}selected{% endif %}>{{ author.name }}</option>
+        {% endfor %}
+    </select>
+
+    <label for="genres">Жанры:</label>
+    <select name="genres" id="genres" multiple>
+        {% for genre in genres %}
+            <option value="{{ genre.id }}" {% if genre in books.genres.all %}selected{% endif %}>{{ genre.name }}</option>
+        {% endfor %}
+    </select>
+
+    <!-- Остальные поля -->
+    <button type="submit">Сохранить</button>
+</form>
+
+{% endblock%}

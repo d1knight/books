@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block header %}
+<div class="main-content">
+
+    <h1>Автор: {{authors.name}}</h1>
+    <div class="about_block">
+
+        <p>{{authors.description}}</p>
+        <div class="img-author"><img class="author-image" src="{{ authors.banner.url }}"></div>
+        <a href="/authors">Назад</a>
+    </div>
+
+</div>
+
+
+{% endblock %}

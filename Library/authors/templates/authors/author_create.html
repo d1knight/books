@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block header %}
+
+<div class="box-author">
+    <h1>Добавить автора</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="name">Имя автора:</label>
+        <input type="text" name="name" id="name"><br>
+    
+        <label for="description">Описание:</label>
+        <textarea name="description" id="description"></textarea><br>
+    
+        <label for="slug">Слаг:</label>
+        <input type="text" name="slug" id="slug"><br>
+    
+        <label for="banner">Выбирите фото:</label>
+        <input type="file" name="banner" id="banner"><br>
+    
+        <button type="submit">Создать</button>
+    </form>
+    <a href="{% url 'authors_list' %}">Назад</a>
+</div>
+
+
+{% endblock %}

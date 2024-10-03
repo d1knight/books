@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<div class="test-forms">
+
+    <form class="form row g-3 mb-4" action="{% url 'search_books' %}">
+        <div class="col-md-9">
+            <input class="form-control" type="text" name="query" placeholder="Введите имя книги..." value="{{ query }}">
+        </div>
+        <div class="col-md-3">
+            <button class="btn btn-primary w-100" type="submit">Поиск</button>
+        </div>
+    </form>
+
+    {% if query %}
+    <table class="result-table">
+        <thead>
+        <tr>
+            <th>Книга</th>
+            <th>Автор</th>
+            <th>Жанр</th>
+            <th>Количество</th>
+            <th>Описание</th>
+            <th>Изменение</th>
+            <th>Удаление</th>
+        </tr>
+        </thead>
+        {% for book in page_obj %}
+
+
+        <tr class='success'>
+            <td><a href="details/{{ book.slug }}">{{ book.name }}</a></td>
+            <td>{{ book.authors }}</td>
+            <td>{{ book.genres }}</td>
+            <td>{{ book.count }}</td>
+            <td>{{ book.description }}</td>
+            <td>
+                <button class="edit-btn"><a href="#">Изменить</a>
+            </td>
+            </button>
+            <td>
+                <button class="remove-btn"><a href="#">Удалить</a></button>
+            </td>
+        </tr>
+        {% empty %}
+        <div class="message"><h3>Автор не найден</h3></div>
+
+        {% endfor %}
+    </table>
+
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page=1{% if query %}&query={{ query }}{% endif %}">Первая</a>
+                <a href="?page={{ page_obj.previous_page_number }}{% if query %}&query={{ query }}{%endif%}">Предыдущая</a>
+            {% endif %}
+        </span>
+        <span class="current">
+            Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages}}
+        </span>
+
+        {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}{% if query %}&query={{ query }}{% endif%}">Следующая</a>
+        <a href="?page={{ page_obj.paginator.num_pages }}{% if query %}&query={{ query }}{% endif%}">Последняя</a>
+        {% endif %}
+    </div>
+</div>
+
+{% endif %}
+
+{% endblock %}
