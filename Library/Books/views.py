@@ -26,7 +26,7 @@ def bookList(request):
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
-    return render(request,'Books/books_list.html',{'page_obj':books})
+    return render(request,'Books/book_list.html',{'page_obj':books})
 
 #Добавление книги
 
