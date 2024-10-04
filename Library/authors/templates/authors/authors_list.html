@@ -10,7 +10,7 @@
             <th>Редактирование</th>
             <th>Удаление</th>
         </tr>
-        {% for author in authors %}
+        {% for author in page_obj %}
         <tr>
             <td>{{ author.name }}</td>
             <td>{{ author.description }}</td>
@@ -26,6 +26,21 @@
         </tr>
         {% endfor %}
     </table>
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page=1">&laquo; Первая</a>
+                <a href="?page={{ page_obj.previous_page_number }}">Предыдущая</a>
+            {% endif %}
+            
+            <span>Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}</span>
+            
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">Следующая</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}">Последняя &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
     <button type="button" class="btn btn-success"><a href="{% url 'author_create' %}">Добавить автора</a></button>
 </div>
 {% endblock %}

@@ -8,7 +8,10 @@ from .models import Authors
 
 def authors_list(request):
     authors = Authors.objects.all()
-    return render(request,'authors/authors_list.html',{'authors':authors})
+    paginator = Paginator(authors, 4)  # Показать 5 авторов на странице
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request,'authors/authors_list.html',{'page_obj':page_obj})
 
 
 def author_create(request):

@@ -10,7 +10,10 @@ from .models import Genres
 
 def genres_list(request):
     genres = Genres.objects.all()
-    return render(request,'genres/genres_list.html',{'genres':genres})
+    paginator = Paginator(genres, 4)  # Показать 4 жанров на странице
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'genres/genres_list.html', {'page_obj': page_obj})
 
 def genre_create(request):
     if request.method=='POST':

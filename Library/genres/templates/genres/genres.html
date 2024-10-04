@@ -57,5 +57,11 @@
 </div>
 
 {% endif %}
-
+<div class="data">
+    <nav>
+        <h3>Доступ к БД</h3>
+        <a class="btn btn-primary" href="{% url 'genres_list' %}">Список</a>
+        <a class="btn btn-warning" href="{% url 'genre_create' %}">Добавить новый жанр</a>
+    </nav>
+</div>
 {% endblock %}

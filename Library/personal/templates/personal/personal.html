@@ -37,7 +37,7 @@
             </td>
         </tr>
         {% empty %}
-        <div class="message"><h3>Жанр не найден</h3></div>
+        <div class="message"><h3>Сотрудник не найден</h3></div>
 
         {% endfor %}
     </table>
@@ -61,5 +61,11 @@
 </div>
 
 {% endif %}
-
+<div class="data">
+    <nav>
+        <h3>Доступ к БД</h3>
+        <a class="btn btn-primary" href="{% url 'personal_list' %}">Список</a>
+        <a class="btn btn-warning" href="{% url 'personal_create' %}">Добавить нового сотрудника</a>
+    </nav>
+</div>
 {% endblock %}

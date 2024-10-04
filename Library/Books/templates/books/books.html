@@ -54,7 +54,7 @@
         </tr>
         {% empty %}
         <div class="message">
-            <h3>Автор не найден</h3>
+            <h3>Книга не найдена</h3>
         </div>
 
         {% endfor %}
@@ -79,5 +79,12 @@
 </div>
 
 {% endif %}
+<div class="data">
+    <nav>
+        <h3>Доступ к БД</h3>
+        <a class="btn btn-primary" href="{% url 'book_list' %}">Список</a>
+        <a class="btn btn-warning" href="{% url 'book_create' %}">Добавить новую книгу</a>
+    </nav>
+</div>
 
 {% endblock %}

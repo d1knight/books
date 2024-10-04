@@ -7,7 +7,10 @@ from .models import Readers
 
 def readers_list(request):
     readers = Readers.objects.all()
-    return render(request,'readers/readers_list.html', {'readers':readers})
+    paginator = Paginator(readers, 4)  # Показывать 4 читателей на странице
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'readers/readers_list.html', {'page_obj': page_obj})
 
 def reader_create(request):
     if request.method == 'POST':

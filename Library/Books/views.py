@@ -22,11 +22,11 @@ from django.db.models import Q
 def bookList(request):
     books = Books.objects.all()
 
-    paginator = Paginator(books,15) # 5 книг на странице
+    paginator = Paginator(books,4) # 4 книг на странице
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
-    return render(request,'Books/book_list.html',{'page_obj':books})
+    return render(request,'Books/book_list.html',{'page_obj':page_obj})
 
 #Добавление книги
 

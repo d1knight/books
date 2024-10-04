@@ -11,7 +11,7 @@
             <th>Редактирование</th>
             <th>Удаление</th>
         </tr>
-        {% for reader in readers %}
+        {% for reader in page_obj %}
         <tr>
             <td>{{ reader.name }}</td>
             <td>{{ reader.adress }}</td>
@@ -28,6 +28,24 @@
         </tr>
         {% endfor %}
     </table>
+    
+    <!-- Пагинация -->
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page=1">&laquo; Первая</a>
+                <a href="?page={{ page_obj.previous_page_number }}">Предыдущая</a>
+            {% endif %}
+            
+            <span>Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}</span>
+            
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">Следующая</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}">Последняя &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+
     <button type="button" class="btn btn-success"><a href="{% url 'reader_create' %}">Добавить читателя</a></button>
 </div>
 {% endblock %}

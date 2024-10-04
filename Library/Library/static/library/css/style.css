@@ -345,7 +345,11 @@ text-align: center;
 }
 
 .box-author a{
-    margin-top: 15px;
+    margin-top: 15px;   
+}
+
+.box-author button{
+    margin-bottom: 15px;
 }
 
 .add-list{
@@ -473,4 +477,14 @@ font-size: 20px;
 
 .box-update-author input,label,textarea{
 font-size: 20px;
+}
+
+.data{
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 6px;
+    margin: 0 25%;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
 }

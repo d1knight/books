@@ -8,7 +8,10 @@ from .models import Personal
 
 def personal_list(request):
     personal = Personal.objects.all()
-    return render(request,'personal/personal_list.html', {'personal':personal})
+    paginator = Paginator(personal, 4)  
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request,'personal/personal_list.html', {'page_obj':page_obj})
 
 def personal_create(request):
     if request.method == 'POST':

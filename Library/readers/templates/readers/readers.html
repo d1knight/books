@@ -61,5 +61,11 @@
 </div>
 
 {% endif %}
-
+<div class="data">
+    <nav>
+        <h3>Доступ к БД</h3>
+        <a class="btn btn-primary" href="{% url 'readers_list' %}">Список</a>
+        <a class="btn btn-warning" href="{% url 'reader_create' %}">Добавить нового автора</a>
+    </nav>
+</div>
 {% endblock %}

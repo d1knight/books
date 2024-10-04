@@ -1,13 +1,15 @@
 {% extends 'base.html' %}
 
 {% block header %}
+
+
 <div class="test-forms">
 
     <form class="form" action="{% url 'search_authors' %}">
         <input class="search-input" type="text" name="query" placeholder="Введите имя автора..." value="{{ query }}">
         <button class="search-btn" type="submit">Поиск</button>
     </form>
-
+    
 {% if query %}
     <table class="result-table">
 
@@ -28,6 +30,8 @@
         {% endfor %}
     </table>
 
+    <a class="btn btn-primary" href="{% url 'authors_list' %}">Назад</a>
+
     <div class="pagination">
         <span class="step-links">
             {% if page_obj.has_previous %}
@@ -47,5 +51,12 @@
 </div>
 
 {% endif %}
+<div class="data">
+    <nav>
+        <h3>Доступ к БД</h3>
+        <a class="btn btn-primary" href="{% url 'authors_list' %}">Список</a>
+        <a class="btn btn-warning" href="{% url 'author_create' %}">Добавить нового автора</a>
+    </nav>
+</div>
 
 {% endblock %}
