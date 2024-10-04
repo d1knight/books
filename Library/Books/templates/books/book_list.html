@@ -16,9 +16,11 @@
             <td>{{ book.description }}</td>
             <td>{% for author in book.authors.all %}
                 {{ author.name }}{% if not forloop.last %}, {% endif %}
-            {% endfor %}</td>
-            <td><button type="button" class="btn btn-primary"><a href="{% url 'book_update' book.pk %}">Редактировать</a></button></td>
-            <td><button type="button" class="btn btn-danger"><a href="{% url 'book_delete' book.pk %}">Удалить</a></button></td>
+                {% endfor %}</td>
+            <td><button type="button" class="btn btn-primary"><a
+                        href="{% url 'book_update' book.pk %}">Редактировать</a></button></td>
+            <td><button type="button" class="btn btn-danger"><a
+                        href="{% url 'book_delete' book.pk %}">Удалить</a></button></td>
         </tr>
         {% endfor %}
     </table>

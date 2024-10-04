@@ -1,29 +1,33 @@
 {% extends 'base.html' %}
 {% block header %}
-<form method="post">
-    {% csrf_token %}
-    <label for="name">Название:</label>
-    <input type="text" name="name" id="name" value="{{ books.name }}">
+<div class="box-update-book">
+    <form method="post">
+        {% csrf_token %}
     
-    <label for="count">Количество:</label>
-    <input type="number" name="count" id="count" value="{{ books.count }}">
+        <label for="name">Название:</label>
+        <input class="alert alert-info" type="text" name="name" id="name" value="{{ books.name }}"><br>
     
-    <label for="authors">Авторы:</label>
-    <select name="authors" id="authors" multiple>
-        {% for author in authors %}
-            <option value="{{ author.id }}" {% if author in books.authors.all %}selected{% endif %}>{{ author.name }}</option>
-        {% endfor %}
-    </select>
+        <label for="count">Количество:</label>
+        <input class="alert alert-info" type="number" name="count" id="count" value="{{ books.count }}"><br>
+        
+        <label for="authors">Авторы:</label>
+        <select class="alert alert-info" name="authors" id="authors">
+            {% for author in authors %}
+                <option value="{{ author.id }}" {% if author in books.authors.all %}selected{% endif %}>{{ author.name }}</option>
+            {% endfor %}
+        </select><br>
+    
+        <label for="genres">Жанры:</label>
+        <select class="alert alert-info" name="genres" id="genres">
+            {% for genre in genres %}
+                <option value="{{ genre.id }}" {% if genre in books.genres.all %}selected{% endif %}>{{ genre.name }}</option>
+            {% endfor %}
+        </select><br>
+    
+        <!-- Остальные поля -->
+        <button  class="btn btn-success" type="submit">Сохранить</button>
+    </form>
+</div>
 
-    <label for="genres">Жанры:</label>
-    <select name="genres" id="genres" multiple>
-        {% for genre in genres %}
-            <option value="{{ genre.id }}" {% if genre in books.genres.all %}selected{% endif %}>{{ genre.name }}</option>
-        {% endfor %}
-    </select>
-
-    <!-- Остальные поля -->
-    <button type="submit">Сохранить</button>
-</form>
 
 {% endblock%}

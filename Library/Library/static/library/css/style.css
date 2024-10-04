@@ -335,10 +335,17 @@ table .remove-btn {
 .content .box-author table {
     text-align: center;
 }
+.content .box-author form label,input{
+text-align: center;
+}
 
 .content .box-author .btn a{
     text-decoration: none;
     color: #ddd;
+}
+
+.box-author a{
+    margin-top: 15px;
 }
 
 .add-list{
@@ -396,4 +403,74 @@ font-size: 20px;
 .book-title {
     display: flex;
     justify-content: center;
+}
+
+.box-update-book {
+    display: flex;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 5px;
+    margin: 0 35%;
+}
+
+.box-update-book button {
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+.box-update-book label,input {
+    font-size: 20px;
+}
+
+.box-delete {
+    background-color: rgba(255, 255, 255, 0.6);
+    margin: 0 35%;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.box-delete button{margin-bottom: 15px;}
+.box-delete a{
+    margin-bottom: 15px;
+}
+
+.box-update-genre{
+    display: flex;
+    background-color: rgba(255, 255, 255, 0.6);
+    justify-content: center;
+    text-align: center;
+    margin: 0 35%;
+    border-radius: 6px;
+}
+
+.box-update-genre button {
+    margin-bottom: 15px;
+}
+
+.box-update-genre input,label,textarea{
+font-size: 20px;
+}
+
+.genre-descr {
+    display: flex;
+    text-align: center;
+
+}
+
+
+.box-update-author{
+    display: flex;
+    background-color: rgba(255, 255, 255, 0.6);
+    justify-content: center;
+    text-align: center;
+    margin: 0 35%;
+    border-radius: 6px;
+}
+
+.box-update-author button {
+    margin-bottom: 15px;
+}
+
+.box-update-author input,label,textarea{
+font-size: 20px;
 }

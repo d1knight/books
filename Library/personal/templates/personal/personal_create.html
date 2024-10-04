@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block header %}
+
+<div class="box-author">
+    <h1>Добавить сотрудника</h1>
+<div class="add-list">
+    <form method="post">
+        {% csrf_token %}
+        <div class="person-name">
+            <label for="name">ФИО:</label>
+            <input type="text" name="name" id="name">
+        </div>
+
+
+        <div class="person-position">
+            <label for="position">Должность:</label>
+            <input type="text" name="position" id="position"></input>
+        </div>
+
+        
+        <div class="person-photo">
+            <label for="photo">Выбирите фото:</label>
+            <input type="file" name="photo" id="photo"><br>
+        </div>
+        
+        <div class="person-adress">
+            <label for="adress">Адрес:</label>
+            <input type="text" name="adress" id="adress">
+        </div>
+
+        <div class="person-slug">
+            <label for="slug">Слаг:</label>
+            <input type="text" name="slug" id="slug">
+        </div>
+        
+        
+        <button type="submit" class="btn btn-success">Создать</button>
+    </form>
+</div>
+    
+    <a class="btn btn-primary" href="{% url 'personal_list' %}" >Назад</a>
+</div>
+
+
+{% endblock %}

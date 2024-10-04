@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block header %}
+
+<div class="box-update-genre">
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label for="name">ФИО:</label>
+    <input class="alert alert-info" type="text" name="name" id="name" value="{{readers.name}}"><br>
+
+    <label for="adress">Адрес:</label>
+    <input class="alert alert-info" type="text" name="adress" id="adress" value="{{readers.adress}}"><br>
+
+    <label for="telephone">Адрес:</label>
+    <input class="alert alert-info" type="text" name="telephone" id="telephone" value="{{readers.telephone}}"><br>
+
+    <label for="slug">Слаг:</label>
+    <input class="alert alert-info" type="text" name="slug" id="slug" value="{{readers.slug}}"><br>
+
+    <label for="image">Фото:</label>
+    <input type="file" name="image" id="image"><br>
+
+    <button class="btn btn-success" type="submit">Сохранить</button>
+</form>
+</div>
+
+
+{% endblock %}

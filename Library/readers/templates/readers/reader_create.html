@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block header %}
+
+<div class="box-author">
+    <h1>Добавить читателя</h1>
+<div class="add-list">
+    <form method="post">
+        {% csrf_token %}
+        <div class="reader-name">
+            <label for="name">ФИО:</label>
+            <input type="text" name="name" id="name">
+        </div>
+
+
+        <div class="reader-adress">
+            <label for="adress">Адрес:</label>
+            <input type="text" name="adress" id="adress"></input>
+        </div>
+        <div class="reader-telephone">
+            <label for="telephone">Телефон:</label>
+            <input type="text" name="telephone" id="telephone"></input>
+        </div>
+
+        <div class="reader-slug">
+            <label for="slug">Слаг:</label>
+            <input type="text" name="slug" id="slug">
+        </div>
+
+        <div class="reader-image">
+            <label for="image">Выбирите фото:</label>
+            <input type="file" name="image" id="image"><br>
+        </div>
+
+        
+        
+        <button type="submit" class="btn btn-primary">Создать</button>
+    </form>
+</div>
+    
+    <a href="{% url 'readers_list' %}" >Назад</a>
+</div>
+
+
+{% endblock %}

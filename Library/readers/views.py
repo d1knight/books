@@ -1,8 +1,54 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from django.core.paginator import Paginator
 from django.template import loader
 from django.http import HttpResponse
 from .models import Readers
+
+
+def readers_list(request):
+    readers = Readers.objects.all()
+    return render(request,'readers/readers_list.html', {'readers':readers})
+
+def reader_create(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        adress = request.POST.get('adress')
+        telephone = request.POST.get('telephone')
+        slug = request.POST.get('slug')
+        image = request.POST.get('image')
+        Readers.objects.create(
+            name = name,
+            adress = adress,
+            telephone = telephone,
+            slug = slug,
+            image = image,
+        )
+        return redirect('readers_list')
+    return render(request,'readers/reader_create.html')
+
+
+def reader_update(request,pk):
+    readers = get_object_or_404(Readers, pk=pk)
+    if request.method=='POST':
+        readers.name = request.POST.get('name',readers.name) # Сохранить текущее значение, если не указано
+        readers.adress = request.POST.get('adress', readers.adress)
+        readers.telephone = request.POST.get('telephone',readers.telephone)
+        readers.slug = request.POST.get('slug',readers.slug)
+        # Проверяем, загрузили ли новое изображение
+        if 'image' in request.FILES:
+            readers.image = request.FILES['image']
+
+        readers.save()
+        return redirect('readers_list')
+    return render(request,'readers/reader_update.html',{'readers':readers})
+
+
+def reader_delete(request,pk):
+    readers = get_object_or_404(Readers,pk=pk)
+    if request.method == 'POST':
+        readers.delete()
+        return redirect('authors_list')
+    return render(request,'readers/reader_delete.html',{'readers':readers})
 
 
 def search_readers(request):

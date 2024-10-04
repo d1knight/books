@@ -77,9 +77,15 @@
                 <tbody>
                     {% for book in page_obj %}
                     <tr>
-                        <td>{{ book.genres }}</td>
+                        <td>{% for genre in book.genres.all %}
+                            {{ genre.name }}{% if not forloop.last %}, {% endif %}
+                            {% endfor %}
+                        </td>
                         <td>{{ book.name }}</td>
-                        <td>{{ book.authors }}</td>
+                        <td>{% for author in book.authors.all %}
+                            {{ author.name }}{% if not forloop.last %}, {% endif %}
+                            {% endfor %}
+                        </td>
                         <td>{{ book.price }}</td>
                         <td>{{ book.binding }}</td> 
                         <td><a class="btn btn-warning" href="#">Изменить</a></td>

@@ -1,14 +1,15 @@
 {% extends 'base.html' %}
 
 {% block header %}
-<div class="box-author">
-    <h1>Удалить книгу</h1>
+
+<div class="box-delete">
+  <h1>Удалить книгу</h1>
 <p>Вы уверены, что хотите удалить книгу "{{ books.name }}"?</p>
 <form method="post">
   {% csrf_token %}
-  <button type="submit">Удалить</button>
+  <button class="btn btn-danger" type="submit">Удалить</button>  <a class="btn btn-primary" href="{% url 'book_list' %}">Назад</a>
 </form>
-<a href="{% url 'book_list' %}">Назад</a>
+
 </div>
 
 

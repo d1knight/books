@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block header %}
+<div class="box-author">
+    <h1>Список читателей</h1>
+    <table class="table table-dark table-striped">
+        <tr>
+            <th>Имя читателя</th>
+            <th>Адрес</th>
+            <th>Телефон</th>
+            <th>Фото</th>
+            <th>Редактирование</th>
+            <th>Удаление</th>
+        </tr>
+        {% for reader in readers %}
+        <tr>
+            <td>{{ reader.name }}</td>
+            <td>{{ reader.adress }}</td>
+            <td>{{ reader.telephone }}</td>
+            <td>
+                {% if reader.image %}
+                    <img src="{{ reader.image.url }}" alt="reader-portret" width="130px">
+                {% else %}
+                    <img src="/path/to/default/image.jpg" alt="default-reader-portret" width="130px">
+                {% endif %}
+            </td>
+            <td><button type="button" class="btn btn-primary"><a href="{% url 'reader_update' reader.pk %}">Редактировать</a></button></td>
+            <td><button type="button" class="btn btn-danger"><a href="{% url 'reader_delete' reader.pk %}">Удалить</a></button></td>
+        </tr>
+        {% endfor %}
+    </table>
+    <button type="button" class="btn btn-success"><a href="{% url 'reader_create' %}">Добавить читателя</a></button>
+</div>
+{% endblock %}

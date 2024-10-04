@@ -3,20 +3,22 @@
 
 <div class="box-author">
     <h1>Добавить жанр</h1>
-    <form method="post">
-        {% csrf_token %}
-        <label for="name">Название жанра:</label>
-        <input type="text" name="name" id="name"><br>
-    
-        <label for="description">Описание:</label>
-        <textarea name="description" id="description"></textarea><br>
-    
-        <label for="slug">Слаг:</label>
-        <input type="text" name="slug" id="slug"><br>
-    
-        <button type="submit">Создать</button>
-    </form>
-    <a href="{% url 'genres_list' %}">Назад</a>
+    <div class="add-list">
+        <form method="post">
+            {% csrf_token %}
+            <label for="name">Название жанра:</label>
+            <input type="text" name="name" id="name"><br>
+        
+            <label for="description">Описание:</label>
+            <textarea name="description" id="description"></textarea><br>
+        
+            <label for="slug">Слаг:</label>
+            <input type="text" name="slug" id="slug"><br>
+        
+            <button class="btn btn-success" type="submit">Создать</button>
+        </form>
+    </div>
+    <a class="btn btn-primary" href="{% url 'genres_list' %}">Назад</a>
 </div>
 
 
