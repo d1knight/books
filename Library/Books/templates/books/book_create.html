@@ -1,47 +1,58 @@
 {% extends 'base.html'%}
 {% block header%}
-<h1>Создать</h1>
+
+<div class="box-book">
+    
     <form method="post">
         {% csrf_token %}
-        <label for="title">Название книги:</label>
-        <input type="text" name="name" id="name"><br>
+                <label for="title">Название книги:</label>
+                <input type="text" name="name" id="name" class="alert alert-info" ><br>
+                
+                <label for="count">Количество:</label>
+                <input class="alert alert-info" type="number" name="count" id="count"><br>
         
-        <label for="count">Количество:</label>
-        <input type="number" name="count" id="count"><br>
-
-        <label for="authors">Выберите автора:</label>
-        <select name="authors" id="authors" multiple>
-            {% for author in authors %}
-            <option value="{{ author.id }}">{{ author.name }}</option>
-            {% endfor %}
-        </select><br>
-
-        <label for="genres">Выберите жанр:</label>
-        <select name="genres" id="genres" multiple>
-            {% for genre in genres %}
-            <option value="{{ genre.id }}">{{ genre.name }}</option>
-            {% endfor %}
-        </select><br>
-
-        <label for="slug">Напишите слаг:</label>
-        <input type="text" name="slug" id="slug"><br>
-
-        <label for="description">Описание:</label>
-        <textarea name="description" id="description"></textarea><br>
-
-        <label for="publishingYear">Год издания</label>
-        <input type="number" name="publishingYear" id="publishingYear"><br>
+                <label for="authors">Выберите автора:</label>
+                <select class="alert alert-info"  name="authors" id="authors">
+                    {% for author in authors %}
+                    <option value="{{ author.id }}">{{ author.name }}</option>
+                    {% endfor %}
+                </select><br>
         
-        <label for="price">Цена:</label>
-        <input type="number" name="price" id="price"><br>
-
-        <label for="publication">Издательство:</label>
-        <input type="text" name="publication" id="publication"><br>
-
-        <label for="binding">Переплет:</label>
-        <input type="text" name="binding" id="binding"> <br>
-
-        <button type="submit">Создать</button>
+                <label for="genres">Выберите жанр:</label>
+                <select name="genres" id="genres" class="alert alert-info" >
+                    {% for genre in genres %}
+                    <option value="{{ genre.id }}">{{ genre.name }}</option>
+                    {% endfor %}
+                </select><br>
+        
+                <label for="slug">Напишите слаг:</label>
+                <input class="alert alert-info"  type="text" name="slug" id="slug"><br>
+        
+                <label for="description">Описание:</label>
+                <textarea class="alert alert-info"  name="description" id="description"></textarea><br>
+        
+                <label for="publishingYear">Год издания</label>
+                <input class="alert alert-info"  type="number" name="publishingYear" id="publishingYear"><br>
+                
+                <label for="price">Цена:</label>
+                <input class="alert alert-info" type="number" name="price" id="price"><br>
+        
+                <label for="publication">Издательство:</label>
+                <input class="alert alert-info"  type="text" name="publication" id="publication"><br>
+        
+                <label for="binding">Переплет:</label>
+                <input class="alert alert-info"  type="text" name="binding" id="binding"> <br>
+            
+    
+            <button type="submit" class="btn btn-success">Создать</button>
+            
+            
+            
     </form>
-    <a href="{% url 'book_list' %}">Назад</a>
+    
+</div>
+<div class="footer">
+    <a href="{% url 'book_list' %}" class="btn btn-primary">Назад</a>
+</div>
+
 {% endblock %}

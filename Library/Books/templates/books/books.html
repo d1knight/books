@@ -15,23 +15,33 @@
     {% if query %}
     <table class="result-table">
         <thead>
-        <tr>
-            <th>Книга</th>
-            <th>Автор</th>
-            <th>Жанр</th>
-            <th>Количество</th>
-            <th>Описание</th>
-            <th>Изменение</th>
-            <th>Удаление</th>
-        </tr>
+            <tr>
+                <th>Книга</th>
+                <th>Автор</th>
+                <th>Жанр</th>
+                <th>Количество</th>
+                <th>Описание</th>
+                <th>Изменение</th>
+                <th>Удаление</th>
+            </tr>
         </thead>
         {% for book in page_obj %}
 
 
         <tr class='success'>
             <td><a href="details/{{ book.slug }}">{{ book.name }}</a></td>
-            <td>{{ book.authors }}</td>
-            <td>{{ book.genres }}</td>
+
+            <td>{% for author in book.authors.all %}
+                {{ author.name }}{% if not forloop.last %}, {% endif %}
+                {% endfor %}
+            </td>
+
+
+            <td>{% for genre in book.genres.all %}
+                {{ genre.name }}{% if not forloop.last %}, {% endif %}
+                {% endfor %}
+            </td>
+
             <td>{{ book.count }}</td>
             <td>{{ book.description }}</td>
             <td>
@@ -43,7 +53,9 @@
             </td>
         </tr>
         {% empty %}
-        <div class="message"><h3>Автор не найден</h3></div>
+        <div class="message">
+            <h3>Автор не найден</h3>
+        </div>
 
         {% endfor %}
     </table>
@@ -51,8 +63,8 @@
     <div class="pagination">
         <span class="step-links">
             {% if page_obj.has_previous %}
-                <a href="?page=1{% if query %}&query={{ query }}{% endif %}">Первая</a>
-                <a href="?page={{ page_obj.previous_page_number }}{% if query %}&query={{ query }}{%endif%}">Предыдущая</a>
+            <a href="?page=1{% if query %}&query={{ query }}{% endif %}">Первая</a>
+            <a href="?page={{ page_obj.previous_page_number }}{% if query %}&query={{ query }}{%endif%}">Предыдущая</a>
             {% endif %}
         </span>
         <span class="current">
