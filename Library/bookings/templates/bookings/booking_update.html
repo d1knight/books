@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block header %}
+<div class="box-book">
+    <h1>Обновить бронирование</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="personal">Выберите сотрудника:</label>
+        <select name="personal" id="personal" class="alert alert-info">
+            {% for person in personal %}
+                <option value="{{ person.id }}" {% if booking.personal.id == person.id %}selected{% endif %}>{{ person.name }}</option>
+            {% endfor %}
+        </select><br>
+
+        <label for="readers">Выберите читателя:</label>
+        <select name="readers" id="readers" class="alert alert-info">
+            {% for reader in readers %}
+                <option value="{{ reader.id }}" {% if booking.readers.id == reader.id %}selected{% endif %}>{{ reader.name }}</option>
+            {% endfor %}
+        </select><br>
+
+        <label for="books">Выберите книгу:</label>
+        <select name="books" id="books" class="alert alert-info">
+            {% for book in books %}
+                <option value="{{ book.id }}" {% if booking.books.id == book.id %}selected{% endif %}>{{ book.name }}</option>
+            {% endfor %}
+        </select><br>
+
+        <label for="getDate">Дата получения:</label>
+        <input type="date" name="getDate" id="getDate" value="{{ booking.getDate }}" class="alert alert-info"><br>
+
+        <label for="returnDate">Дата возврата:</label>
+        <input type="date" name="returnDate" id="returnDate" value="{{ booking.returnDate }}" class="alert alert-info"><br>
+
+        <button type="submit" class="btn btn-success">Обновить бронирование</button>
+    </form>
+</div>
+{% endblock %}

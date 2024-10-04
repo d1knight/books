@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block header %}
+<div class="box-booking">
+    <h1>Список бронирований</h1>
+    
+    <table class="table table-dark table-striped">
+        <tr>
+            <th>Сотрудник</th>
+            <th>Читатель</th>
+            <th>Книга</th>
+            <th>Дата получения</th>
+            <th>Дата возврата</th>
+            <th>Редактирование</th>
+            <th>Удаление</th>
+        </tr>
+        
+        {% for booking in booking %}
+        <tr>
+            <td>{{ booking.personal.name }}</td>
+            <td>{{ booking.readers.name }}</td>
+            <td>{{ booking.books.name }}</td>
+            <td>{{ booking.getDate }}</td>
+            <td>{{ booking.returnDate }}</td>
+            <td>
+                <a href="{% url 'booking_update' booking.pk %}" class="btn btn-primary">Редактировать</a>
+            </td>
+            <td>
+                <form action="{% url 'booking_delete' booking.pk %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Удалить</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    
+    <button type="button" class="btn btn-success">
+        <a href="{% url 'booking_create' %}">Добавить бронирование</a>
+    </button>
+</div>
+{% endblock %}

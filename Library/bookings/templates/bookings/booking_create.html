@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block header %}
+<div class="box-booking">
+    <h1>Создать новое бронирование</h1>
+    <form method="post">
+        {% csrf_token %}
+        
+        <label for="personal">Выберите сотрудника:</label>
+        <select name="personal" id="personal" class="alert alert-info">
+            {% for person in personal %}
+                <option value="{{ person.id }}">{{ person.name }}</option>
+            {% endfor %}
+        </select><br>
+
+        <label for="readers">Выберите читателя:</label>
+        <select name="readers" id="readers" class="alert alert-info">
+            {% for reader in readers %}
+                <option value="{{ reader.id }}">{{ reader.name }}</option>
+            {% endfor %}
+        </select><br>
+
+        <label for="books">Выберите книгу:</label>
+        <select name="books" id="books" class="alert alert-info">
+            {% for book in books %}
+                <option value="{{ book.id }}">{{ book.name }}</option>
+            {% endfor %}
+        </select><br>
+
+        <label for="getDate">Дата получения:</label>
+        <input type="date" name="getDate" id="getDate" class="alert alert-info"><br>
+
+        <label for="returnDate">Дата возврата:</label>
+        <input type="date" name="returnDate" id="returnDate" class="alert alert-info"><br>
+
+        <button type="submit" class="btn btn-success">Создать бронирование</button>
+    </form>
+</div>
+<div class="footer">
+    <a href="{% url 'booking_list' %}" class="btn btn-primary">Назад</a>
+</div>
+{% endblock %}
