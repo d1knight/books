@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block header %}
+<div class="box-book">
+    <h1>Вы уверены, что хотите удалить это бронирование?</h1>
+    <p>Книга: {{ booking.books.name }}</p>
+    <p>Читатель: {{ booking.readers.name }}</p>
+    <p>Сотрудник: {{ booking.personal.name }}</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Удалить</button>
+        <a href="{% url 'booking_list' %}" class="btn btn-secondary">Отмена</a>
+    </form>
+</div>
+{% endblock %}

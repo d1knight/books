@@ -84,6 +84,54 @@ def book_create(request):
         'genres': all_genres
     })
 
+def book_create(request):
+    if request.method == 'POST':
+        # Получаем данные из формы
+        name = request.POST.get('name')
+        count = request.POST.get('count')
+        authors_ids = request.POST.getlist('authors')  # Получаем id авторов
+        genres_ids = request.POST.getlist('genres')    # Получаем id жанров
+        slug = request.POST.get('slug')
+        description = request.POST.get('description')
+        publishingYear = request.POST.get('publishingYear')
+        price = request.POST.get('price')
+        publication = request.POST.get('publication')
+        binding = request.POST.get('binding')
+
+        # Создаём книгу без связи с авторами и жанрами
+        book = Books.objects.create(
+            name=name,
+            count=count,
+            slug=slug,
+            description=description,
+            publishingYear=publishingYear,
+            price=price,
+            publication=publication,
+            binding=binding
+        )
+
+        # Добавляем связи с авторами и жанрами
+        authors = Authors.objects.filter(id__in=authors_ids)
+        genres = Genres.objects.filter(id__in=genres_ids)
+        
+        book.authors.add(*authors)  # Используем add() для ManyToMany
+        book.genres.add(*genres)    # Используем add() для ManyToMany
+
+        # Устанавливаем связи
+        book.authors.set(authors)
+        book.genres.set(genres)
+
+        return redirect('users:books_list')
+    
+    # Получаем всех авторов и жанры для выбора в форме
+    all_authors = Authors.objects.all()
+    all_genres = Genres.objects.all()
+
+    # Отображаем форму создания книги
+    return render(request, 'users/books/book_create.html', {
+        'authors': all_authors,
+        'genres': all_genres
+    })
 
 def book_update(request, pk):
     books = get_object_or_404(Books, pk=pk)

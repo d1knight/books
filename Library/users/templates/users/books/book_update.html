@@ -1,0 +1,33 @@
+{% extends 'admin.html' %}
+{% block admin %}
+<div class="box-update-book">
+    <form method="post">
+        {% csrf_token %}
+    
+        <label for="name">Название:</label>
+        <input class="alert alert-info" type="text" name="name" id="name" value="{{ books.name }}"><br>
+    
+        <label for="count">Количество:</label>
+        <input class="alert alert-info" type="number" name="count" id="count" value="{{ books.count }}"><br>
+        
+        <label for="authors">Авторы:</label>
+        <select class="alert alert-info" name="authors" id="authors">
+            {% for author in authors %}
+                <option value="{{ author.id }}" {% if author in books.authors.all %}selected{% endif %}>{{ author.name }}</option>
+            {% endfor %}
+        </select><br>
+    
+        <label for="genres">Жанры:</label>
+        <select class="alert alert-info" name="genres" id="genres">
+            {% for genre in genres %}
+                <option value="{{ genre.id }}" {% if genre in books.genres.all %}selected{% endif %}>{{ genre.name }}</option>
+            {% endfor %}
+        </select><br>
+    
+        <!-- Остальные поля -->
+        <button  class="btn btn-success" type="submit">Сохранить</button>
+    </form>
+</div>
+
+
+{% endblock%}

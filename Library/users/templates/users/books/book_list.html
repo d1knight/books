@@ -1,0 +1,52 @@
+{% extends 'admin.html' %}
+{% block admin %}
+<div class="box-author">
+    <div class="create">
+        <h1>Список книг</h1>
+        <button type="button" class="btn btn-success"><a href="{% url 'users:books_create' %}">Добавить книгу</a></button>
+    </div>
+    
+    
+    <table class="table">
+        <tr>
+            <th>Название книги</th>
+            <th>Описание</th>
+            <th>Автор</th>
+            <th>Редактирование</th>
+            <th>Удаление</th>
+        </tr>
+        {% for book in page_obj %}
+        <tr>
+            <td>{{ book.name }}</td>
+            <td> {{ book.description|slice:":80" }}{% if book.description|length > 80 %}...{% endif %}</td>
+            <td>{% for author in book.authors.all %}
+                {{ author.name }}{% if not forloop.last %}, {% endif %}
+                {% endfor %}</td>
+            <td><button type="button" class="btn btn-warning"><a
+                        href="{% url 'users:books_update' book.pk %}">Редактировать</a></button></td>
+            <td><button type="button" class="btn btn-danger"><a
+                        href="{% url 'users:books_delete' book.pk %}">Удалить</a></button></td>
+        </tr>
+        {% endfor %}
+    </table>
+    
+    <!-- Пагинация -->
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page=1">&laquo; Первая</a>
+                <a href="?page={{ page_obj.previous_page_number }}">Предыдущая</a>
+            {% endif %}
+            
+            <span>Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}</span>
+            
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">Следующая</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}">Последняя &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+    
+    
+</div>
+{% endblock %}

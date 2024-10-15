@@ -1,0 +1,40 @@
+{% extends 'admin.html' %}
+{% block admin %}
+
+<div class="box-author">
+    <h1>Добавить автора</h1>
+<div class="add-list">
+    <form method="post">
+        {% csrf_token %}
+        <div class="author-name">
+            <label for="name">Имя автора:</label>
+            <input class="alert alert-info" type="text" name="name" id="name">
+        </div>
+
+
+        <div class="author-description">
+            <label for="description">Описание:</label>
+            <textarea class="alert alert-info" name="description" id="description"></textarea>
+        </div>
+
+        <div class="author-slug">
+            <label for="slug">Слаг:</label>
+            <input class="alert alert-info" type="text" name="slug" id="slug">
+        </div>
+
+        <div class="author-banner">
+            <label for="banner">Выбирите фото:</label>
+            <input class="alert alert-info" type="file" name="banner" id="banner"><br>
+        </div>
+
+        
+        
+        <button type="submit" class="btn btn-primary">Создать</button>
+    </form>
+</div>
+    <br>
+    <a href="{% url 'users:authors_list' %}" class="btn btn-warning">Назад</a>
+</div>
+
+
+{% endblock %}

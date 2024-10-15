@@ -9,7 +9,9 @@
 
 body {
     background: url(../img/librar.jpg);
-    background-size: 100%;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 }
 
 .detail_block p {

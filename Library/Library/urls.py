@@ -30,6 +30,7 @@ urlpatterns = [
     path('', include('genres.urls')),
     path('', include('personal.urls')),
     path('', include('readers.urls')),
+    path('users/', include('users.urls', namespace = "users")), #с помощью namespace изолируем users
 ]
 
 

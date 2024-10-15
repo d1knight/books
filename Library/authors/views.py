@@ -1,11 +1,43 @@
-from django.shortcuts import render,redirect,get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
-from django.template.loader import render_to_string
-from django.template import loader
-from django.core.paginator import Paginator
+from django.contrib.auth import authenticate, login, logout,login as auth_login
+from django.contrib.auth.models import User
+from django.contrib import messages
 from .models import Authors
+from django.core.paginator import Paginator
 
 
+#декоратор косыу
+# def register(request):
+#     if request.method == 'POST':
+#         username = request.POST.get('username')
+#         password = request.POST.get('password')
+        
+#         if User.objects.filter(username=username).exists():
+#             messages.error(request, "Пользователь с таким именем уже существует.")
+#         else:
+#             User.objects.create_user(username=username, password=password)
+#             messages.success(request, "Регистрация прошла успешно! Вы можете войти.")
+#             return redirect('login')
+
+#     return render(request, 'authors/register.html')
+
+# def login_view(request):
+#     if request.method == 'POST':
+#         username = request.POST.get('username')
+#         password = request.POST.get('password')
+#         user = authenticate(request, username=username, password=password)
+        
+#         if user is not None:
+#             auth_login(request, user)  # Используем alias auth_login
+#             return redirect('authors_list')
+#         else:
+#             messages.error(request, "Неправильное имя пользователя или пароль.")
+
+#     return render(request, 'authors/login.html')
+
+
+#декоратор косыу
 def authors_list(request):
     authors = Authors.objects.all()
     paginator = Paginator(authors, 4)  # Показать 5 авторов на странице
@@ -13,7 +45,7 @@ def authors_list(request):
     page_obj = paginator.get_page(page_number)
     return render(request,'authors/authors_list.html',{'page_obj':page_obj})
 
-
+#декоратор косыу
 def author_create(request):
     if request.method == 'POST':
         name = request.POST.get('name')
@@ -29,6 +61,7 @@ def author_create(request):
         return redirect('authors_list')
     return render(request,'authors/author_create.html')
 
+#декоратор косыу
 def author_update(request,pk):
     authors = get_object_or_404(Authors, pk=pk)
     if request.method=='POST':
@@ -44,6 +77,7 @@ def author_update(request,pk):
     return render(request,'authors/author_update.html',{'authors':authors})
 
 
+#декоратор косыу
 def author_delete(request,pk):
     authors = get_object_or_404(Authors,pk=pk)
     if request.method == 'POST':
@@ -73,3 +107,7 @@ def about(request, slug):
         'authors': authors,
     }
     return HttpResponse(template.render(context, request))
+
+def logout_view(request):
+    logout(request)
+    return redirect('search_authors')  # Перенаправление на authors_list после выхода
